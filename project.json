@@ -3,6 +3,7 @@
   "description": "RPA Module of the project PRY20220169",
   "main": "Main.xaml",
   "dependencies": {
+    "UiPath.Database.Activities": "[1.6.1]",
     "UiPath.Excel.Activities": "[2.12.3]",
     "UiPath.Mail.Activities": "[1.15.2]",
     "UiPath.System.Activities": "[22.4.4]",
@@ -40,7 +41,7 @@
       "ignoredFiles": []
     },
     "fileInfoCollection": [],
-    "modernBehavior": true
+    "modernBehavior": false
   },
   "expressionLanguage": "VisualBasic",
   "entryPoints": [
