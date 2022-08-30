@@ -3,6 +3,7 @@
   "description": "RPA Module of the project PRY20220169",
   "main": "Main.xaml",
   "dependencies": {
+    "Microsoft.Azure.Core.NewtonsoftJson": "[1.0.0]",
     "UiPath.Database.Activities": "[1.6.1]",
     "UiPath.Excel.Activities": "[2.12.3]",
     "UiPath.Mail.Activities": "[1.15.2]",
