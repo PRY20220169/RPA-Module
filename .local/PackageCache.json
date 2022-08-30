@@ -2,6 +2,27 @@
   "Packages": [
     {
       "Package": {
+        "Id": "UiPath.Database.Activities",
+        "Version": "1.6.1"
+      },
+      "Assemblies": [
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\oracle.manageddataaccess\\19.11.0\\lib/net40/Oracle.ManagedDataAccess.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.buffers\\4.5.1\\lib/net461/System.Buffers.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\runtimes/win/lib/net461/System.Data.SqlClient.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.memory\\4.5.4\\lib/net461/System.Memory.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\lib/net46/System.Numerics.Vectors.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.resources.extensions\\5.0.0\\lib/net461/System.Resources.Extensions.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/UiPath.Data.ConnectionUI.Dialog.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/UiPath.Database.Activities.Design.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/UiPath.Database.Activities.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/UiPath.Database.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/runtimes/win-x86/native/sni.dll"
+      ],
+      "Path": "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1"
+    },
+    {
+      "Package": {
         "Id": "UiPath.Excel.Activities",
         "Version": "2.12.3"
       },
@@ -202,28 +223,63 @@
     },
     {
       "Package": {
-        "Id": "UiPath.Database.Activities",
-        "Version": "1.6.1"
+        "Id": "Microsoft.Azure.Core.NewtonsoftJson",
+        "Version": "1.0.0"
       },
       "Assemblies": [
-        "C:\\Users\\Rodrigo\\.nuget\\packages\\oracle.manageddataaccess\\19.11.0\\lib/net40/Oracle.ManagedDataAccess.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\azure.core\\1.7.0\\lib/net461/Azure.Core.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\microsoft.azure.core.newtonsoftjson\\1.0.0\\lib/netstandard2.0/Microsoft.Azure.Core.NewtonsoftJson.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\lib/net461/Microsoft.Bcl.AsyncInterfaces.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\lib/net45/Newtonsoft.Json.dll",
         "C:\\Users\\Rodrigo\\.nuget\\packages\\system.buffers\\4.5.1\\lib/net461/System.Buffers.dll",
-        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\runtimes/win/lib/net461/System.Data.SqlClient.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.6.0\\lib/net46/System.Diagnostics.DiagnosticSource.dll",
         "C:\\Users\\Rodrigo\\.nuget\\packages\\system.memory\\4.5.4\\lib/net461/System.Memory.dll",
         "C:\\Users\\Rodrigo\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\lib/net46/System.Numerics.Vectors.dll",
-        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.resources.extensions\\5.0.0\\lib/net461/System.Resources.Extensions.dll",
         "C:\\Users\\Rodrigo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/UiPath.Data.ConnectionUI.Dialog.dll",
-        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/UiPath.Database.Activities.Design.dll",
-        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/UiPath.Database.Activities.dll",
-        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/UiPath.Database.dll",
-        "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1\\lib/net461/runtimes/win-x86/native/sni.dll"
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.text.encodings.web\\4.7.1\\lib/net461/System.Text.Encodings.Web.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.text.json\\4.7.2\\lib/net461/System.Text.Json.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\lib/net461/System.Threading.Tasks.Extensions.dll",
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.valuetuple\\4.5.0\\lib/net461/System.ValueTuple.dll"
       ],
-      "Path": "C:\\Users\\Rodrigo\\.nuget\\packages\\uipath.database.activities\\1.6.1"
+      "Path": "C:\\Users\\Rodrigo\\.nuget\\packages\\microsoft.azure.core.newtonsoftjson\\1.0.0"
     }
   ],
   "Conflicts": [],
   "ResolvedDependencies": {
+    "Azure.Core": {
+      "Id": "Azure.Core",
+      "Version": "1.7.0",
+      "Dependencies": [
+        {
+          "Item1": "Microsoft.Bcl.AsyncInterfaces",
+          "Item2": "[1.0.0, )"
+        },
+        {
+          "Item1": "System.Buffers",
+          "Item2": "[4.5.0, )"
+        },
+        {
+          "Item1": "System.Diagnostics.DiagnosticSource",
+          "Item2": "[4.6.0, )"
+        },
+        {
+          "Item1": "System.Memory",
+          "Item2": "[4.5.3, )"
+        },
+        {
+          "Item1": "System.Numerics.Vectors",
+          "Item2": "[4.5.0, )"
+        },
+        {
+          "Item1": "System.Text.Json",
+          "Item2": "[4.6.0, )"
+        },
+        {
+          "Item1": "System.Threading.Tasks.Extensions",
+          "Item2": "[4.5.2, )"
+        }
+      ]
+    },
     "ClosedXML": {
       "Id": "ClosedXML",
       "Version": "0.87.1",
@@ -501,6 +557,20 @@
         {
           "Item1": "Microsoft.Rest.ClientRuntime.Azure",
           "Item2": "[3.3.18, 4.0.0)"
+        },
+        {
+          "Item1": "Newtonsoft.Json",
+          "Item2": "[10.0.3, )"
+        }
+      ]
+    },
+    "Microsoft.Azure.Core.NewtonsoftJson": {
+      "Id": "Microsoft.Azure.Core.NewtonsoftJson",
+      "Version": "1.0.0",
+      "Dependencies": [
+        {
+          "Item1": "Azure.Core",
+          "Item2": "[1.7.0, )"
         },
         {
           "Item1": "Newtonsoft.Json",
@@ -992,6 +1062,16 @@
       "Id": "System.Data.SqlClient",
       "Version": "4.8.2",
       "Dependencies": []
+    },
+    "System.Diagnostics.DiagnosticSource": {
+      "Id": "System.Diagnostics.DiagnosticSource",
+      "Version": "4.6.0",
+      "Dependencies": [
+        {
+          "Item1": "System.Memory",
+          "Item2": "[4.5.3, )"
+        }
+      ]
     },
     "System.IdentityModel.Tokens.Jwt": {
       "Id": "System.IdentityModel.Tokens.Jwt",
@@ -1556,6 +1636,16 @@
   "AllPackages": [
     {
       "Package": {
+        "Id": "Azure.Core",
+        "Version": "1.7.0"
+      },
+      "Assemblies": [
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\azure.core\\1.7.0\\lib\\net461\\Azure.Core.dll"
+      ],
+      "Path": "C:\\Users\\Rodrigo\\.nuget\\packages\\azure.core\\1.7.0"
+    },
+    {
+      "Package": {
         "Id": "ClosedXML",
         "Version": "0.87.1"
       },
@@ -1765,6 +1855,16 @@
         "C:\\Users\\Rodrigo\\.nuget\\packages\\microsoft.azure.cognitiveservices.vision.computervision\\7.0.1\\lib\\net461\\Microsoft.Azure.CognitiveServices.Vision.ComputerVision.dll"
       ],
       "Path": "C:\\Users\\Rodrigo\\.nuget\\packages\\microsoft.azure.cognitiveservices.vision.computervision\\7.0.1"
+    },
+    {
+      "Package": {
+        "Id": "Microsoft.Azure.Core.NewtonsoftJson",
+        "Version": "1.0.0"
+      },
+      "Assemblies": [
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\microsoft.azure.core.newtonsoftjson\\1.0.0\\lib\\netstandard2.0\\Microsoft.Azure.Core.NewtonsoftJson.dll"
+      ],
+      "Path": "C:\\Users\\Rodrigo\\.nuget\\packages\\microsoft.azure.core.newtonsoftjson\\1.0.0"
     },
     {
       "Package": {
@@ -2255,6 +2355,16 @@
         "C:\\Users\\Rodrigo\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\lib\\net461\\System.Data.SqlClient.dll"
       ],
       "Path": "C:\\Users\\Rodrigo\\.nuget\\packages\\system.data.sqlclient\\4.8.2"
+    },
+    {
+      "Package": {
+        "Id": "System.Diagnostics.DiagnosticSource",
+        "Version": "4.6.0"
+      },
+      "Assemblies": [
+        "C:\\Users\\Rodrigo\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.6.0\\lib\\net46\\System.Diagnostics.DiagnosticSource.dll"
+      ],
+      "Path": "C:\\Users\\Rodrigo\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.6.0"
     },
     {
       "Package": {
