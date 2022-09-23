@@ -47,7 +47,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="35">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="34">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -82,7 +82,6 @@
       <AssemblyReference>UiPath.Web</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -103,6 +102,7 @@
       <Variable x:TypeArguments="njl:JObject" Name="IEEE_JSON_Response" />
       <Variable x:TypeArguments="x:String" Name="WOS_String_Response" />
       <Variable x:TypeArguments="x:String" Name="IEEE_String_Response" />
+      <Variable x:TypeArguments="sd:DataTable" Name="SD_DataTable" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -116,696 +116,14 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID8</x:Reference>
+      <x:Reference>__ReferenceID2</x:Reference>
     </Flowchart.StartNode>
-    <FlowStep>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">380,15.6</av:Point>
-          <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">480,84.4 480,115.6</av:PointCollection>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="WoS Web Scrapping" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
-        <Sequence.Variables>
-          <Variable x:TypeArguments="x:String" Name="WOS_URL" />
-          <Variable x:TypeArguments="sd:DataTable" Name="WOS_Links_DataTable" />
-        </Sequence.Variables>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <Assign DisplayName="Assign Web Of Science String" sap:VirtualizedContainerService.HintSize="541.6,60" sap2010:WorkflowViewState.IdRef="Assign_1">
-          <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[WOS_URL]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="x:String">https://webofscience.upc.elogim.com/wos/woscc/basic-search</InArgument>
-          </Assign.Value>
-        </Assign>
-        <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Open Web Of Science on Browser" sap:VirtualizedContainerService.HintSize="541.6,602.4" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[WOS_URL]">
-          <ui:OpenBrowser.Body>
-            <ActivityAction x:TypeArguments="x:Object">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,500" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-                <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into Keyword and ENTER" EmptyField="True" sap:VirtualizedContainerService.HintSize="333.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[keyword + “[k(enter)]”]">
-                  <ui:TypeInto.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0678b1fb-c551-48cf-a89b-d2c1abb5a51b" InformativeScreenshot="a28234ffc577cf0877397ef84561019a" Selector="&lt;webctrl tag='INPUT' /&gt;">
-                      <ui:Target.TimeoutMS>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:Target.TimeoutMS>
-                      <ui:Target.WaitForReady>
-                        <InArgument x:TypeArguments="ui:WaitForReady" />
-                      </ui:Target.WaitForReady>
-                    </ui:Target>
-                  </ui:TypeInto.Target>
-                </ui:TypeInto>
-                <ui:ExtractData DelayBetweenPagesMS="{x:Null}" ContinueOnError="True" DataTable="[WOS_Links_DataTable]" DisplayName="Extract Links" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='app-record' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='article_title' attr='text' name2='article_url' attr2='href'&gt;&lt;webctrl tag='app-record' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='app-summary-title' idx='1' /&gt;&lt;webctrl tag='h3' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='authors_list' attr='text'&gt;&lt;webctrl tag='app-record' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='app-summary-authors' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='summary' attr='text'&gt;&lt;webctrl tag='app-record' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='p' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="ExtractData_8" MaxNumberOfResults="[max_results]" NextLinkSelector="&lt;webctrl aaname='chevron_right' tag='MAT-ICON' /&gt;" SimulateClick="True">
-                  <ui:ExtractData.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e4476b4e-c447-4801-9d7e-ae71f446fe03" InformativeScreenshot="1974af97b133bc98a0d62790f0c2bd76" Selector="&lt;webctrl tag='APP-RECORDS-LIST' /&gt;" WaitForReady="COMPLETE">
-                      <ui:Target.TimeoutMS>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:Target.TimeoutMS>
-                    </ui:Target>
-                  </ui:ExtractData.Target>
-                </ui:ExtractData>
-                <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
-              </Sequence>
-            </ActivityAction>
-          </ui:OpenBrowser.Body>
-        </ui:OpenBrowser>
-        <ui:BuildDataTable DataTable="[WOS_DataTable]" DisplayName="Initialize WOS Empty DataTable" sap:VirtualizedContainerService.HintSize="541.6,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;article_title&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;article_date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;article_description&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;article_noc&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;article_nor&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;authors_list&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;journal_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;journal_if&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;journal_ci&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;keywords&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;categories&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;source&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[WOS_Links_DataTable]" DisplayName="For Each URL in Links DataTable" sap:VirtualizedContainerService.HintSize="541.6,2501.6" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
-          <ui:ForEachRow.Body>
-            <ActivityAction x:TypeArguments="sd:DataRow">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Create Row Object" sap:VirtualizedContainerService.HintSize="508,2385.6" sap2010:WorkflowViewState.IdRef="Sequence_36">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:String" Default="https://webofscience.upc.elogim.com/wos/woscc/full-record/WOS:000258255200017" Name="ArticleURL" />
-                  <Variable x:TypeArguments="x:String" Name="article_description">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="article_noc">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="article_nor">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="authors_list">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="journal_name">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="journal_if">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="journal_ci">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="keywords">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="categories">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="article_title">
-                    <Variable.Default>
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </Variable.Default>
-                  </Variable>
-                  <Variable x:TypeArguments="x:String" Name="article_date" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:GetRowItem Column="{x:Null}" ColumnName="{x:Null}" ColumnIndex="1" DisplayName="Get Row Item" sap:VirtualizedContainerService.HintSize="466.4,188" sap2010:WorkflowViewState.IdRef="GetRowItem_3" Row="[CurrentRow]">
-                  <ui:GetRowItem.Value>
-                    <OutArgument x:TypeArguments="x:String">[ArticleURL]</OutArgument>
-                  </ui:GetRowItem.Value>
-                </ui:GetRowItem>
-                <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Open Article Details" sap:VirtualizedContainerService.HintSize="466.4,1836.8" sap2010:WorkflowViewState.IdRef="OpenBrowser_6" Url="[ArticleURL]">
-                  <ui:OpenBrowser.Body>
-                    <ActivityAction x:TypeArguments="x:Object">
-                      <ActivityAction.Argument>
-                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                      </ActivityAction.Argument>
-                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,1734.4" sap2010:WorkflowViewState.IdRef="Sequence_35">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Article Title" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_12">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b90207c6-0837-4957-96b5-c6a9f49e600a" InformativeScreenshot="6b27b1d52f358d2d54e8708de5a8a5ea" Selector="&lt;webctrl tag='H2' /&gt;" WaitForReady="COMPLETE">
-                              <ui:Target.TimeoutMS>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:Target.TimeoutMS>
-                            </ui:Target>
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[article_title]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Article Date" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_13">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="38f432c9-b16a-4ae8-bd3d-1ff2aba78050" InformativeScreenshot="c8a84f5e63837bc2867ab6d0228b2b83" Selector="&lt;webctrl id='FullRTa-indexedDate' tag='SPAN' /&gt;">
-                              <ui:Target.TimeoutMS>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:Target.TimeoutMS>
-                              <ui:Target.WaitForReady>
-                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                              </ui:Target.WaitForReady>
-                            </ui:Target>
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[article_date]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Article Description" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_14">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2701a2cd-7e28-4abe-ba62-5d4d5110be19" InformativeScreenshot="cad8df148ded2608c03e83d9da5b0009" Selector="&lt;html app='msedge.exe' title='*-Web of Science Core Collection' /&gt;&lt;webctrl tag='P' idx='1' /&gt;">
-                              <ui:Target.TimeoutMS>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:Target.TimeoutMS>
-                              <ui:Target.WaitForReady>
-                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                              </ui:Target.WaitForReady>
-                            </ui:Target>
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[article_description]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Article Number of Citations" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_15">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="67ea0fd2-940f-4415-8dbd-647291417ccc" InformativeScreenshot="fdad815a449b3a3bc0096e53d1c74f6d" Selector="&lt;html app='msedge.exe' title='*-Web of Science Core Collection' /&gt;&lt;webctrl id='FullRRPTa-wos-citation-network-times-cited-count-link-*' tag='A' idx='1' /&gt;" TimeoutMS="0" WaitForReady="INTERACTIVE" />
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[article_noc]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Article Number of References" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_16">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="70e1854c-e081-45c8-8e2c-e9c4a36fe45c" InformativeScreenshot="9efca208c426a3d9c79b5a30cc0d1b49" Selector="&lt;webctrl id='FullRRPTa-wos-citation-network-refCountLink' tag='A' /&gt;" TimeoutMS="0" WaitForReady="INTERACTIVE" />
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[article_nor]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get List of Authors" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_17">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3b9ebca5-ac5b-41ce-a01f-8d4a626d808f" InformativeScreenshot="8ced91ab4963e10630ff1af1d6c219f9" Selector="&lt;html app='msedge.exe' title='*-Web of Science Core Collection' /&gt;&lt;webctrl id='SumAuthTa-MainDiv-author-en' tag='DIV' /&gt;">
-                              <ui:Target.TimeoutMS>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:Target.TimeoutMS>
-                              <ui:Target.WaitForReady>
-                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                              </ui:Target.WaitForReady>
-                            </ui:Target>
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[authors_list]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Journal Name" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_18">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="dbad5101-b569-4592-a578-9b42a923c501" InformativeScreenshot="3e6e7ded72929e8db4d9bbeb4736a010" Selector="&lt;webctrl parentid='snJournalData' tag='A' /&gt;">
-                              <ui:Target.TimeoutMS>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:Target.TimeoutMS>
-                              <ui:Target.WaitForReady>
-                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                              </ui:Target.WaitForReady>
-                            </ui:Target>
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[journal_name]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Journal Impact Factor" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_19">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3a5b0161-46f0-4945-ac51-8d5bbad79660" InformativeScreenshot="e5626884d60ef76d04b199db63ea5242" Selector="&lt;html app='msedge.exe' title='*-Web of Science Core Collection' /&gt;&lt;webctrl parentid='snJournalData' tag='SPAN' idx='19' /&gt;" TimeoutMS="0" WaitForReady="INTERACTIVE" />
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[journal_if]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Journal Citation Indicator" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_20">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1bfae23b-2121-4802-9a7e-52cf1e1b54fc" InformativeScreenshot="c4bd837bf9896c1e16d1cc12a4c73166" Selector="&lt;html app='msedge.exe' title='*-Web of Science Core Collection' /&gt;&lt;webctrl aaname='0.*' parentid='snJournalData' tag='SPAN' /&gt;" TimeoutMS="0" WaitForReady="INTERACTIVE" />
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[journal_ci]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Keywords" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_21">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e85da729-606d-42dc-ac4f-f67b10605515" InformativeScreenshot="81b6552503713d980a6139b2e67c5181" Selector="&lt;html app='msedge.exe' title='*-Web of Science Core Collection' /&gt;&lt;webctrl css-selector='body&amp;gt;app-wos&amp;gt;main&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;app-input-route&amp;gt;app-full-record-home&amp;gt;div&amp;gt;div&amp;gt;app-full-record&amp;gt;div&amp;gt;app-full-record-keywords&amp;gt;div' parentid='snMainArticle' tag='DIV' idx='1' /&gt;" WaitForReady="INTERACTIVE">
-                              <ui:Target.TimeoutMS>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:Target.TimeoutMS>
-                            </ui:Target>
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[keywords]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:GetValue ContinueOnError="True" DisplayName="Get Categories" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_22">
-                          <ui:GetValue.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5e6d27b2-4b20-46f0-8f75-6d42c05685b4" InformativeScreenshot="696229fdb5600c1d3851911062b09332" Selector="&lt;html app='msedge.exe' title='*-Web of Science Core Collection' /&gt;&lt;webctrl css-selector='body&amp;gt;app-wos&amp;gt;main&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;app-input-route&amp;gt;app-full-record-home&amp;gt;div&amp;gt;div&amp;gt;app-full-record&amp;gt;div&amp;gt;app-full-record-categories-classification&amp;gt;div&amp;gt;div' parentid='snMainArticle' tag='DIV' /&gt;" WaitForReady="INTERACTIVE">
-                              <ui:Target.TimeoutMS>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:Target.TimeoutMS>
-                            </ui:Target>
-                          </ui:GetValue.Target>
-                          <ui:GetValue.Value>
-                            <OutArgument x:TypeArguments="x:String">[categories]</OutArgument>
-                          </ui:GetValue.Value>
-                        </ui:GetValue>
-                        <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="CloseTab_6" />
-                      </Sequence>
-                    </ActivityAction>
-                  </ui:OpenBrowser.Body>
-                </ui:OpenBrowser>
-                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{article_title, article_date, article_description, article_noc, article_nor, authors_list, journal_name, journal_if, journal_ci, keywords, categories, &quot;Web Of Science&quot;}]" DataTable="[WOS_DataTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="466.4,188" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
-              </Sequence>
-            </ActivityAction>
-          </ui:ForEachRow.Body>
-        </ui:ForEachRow>
-        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[WOS_DataTable.RowCount.ToString]" />
-      </Sequence>
-      <FlowStep.Next>
-        <FlowStep x:Name="__ReferenceID0">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:Point x:Key="ShapeLocation">380,115.6</av:Point>
-              <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">480,184.4 480,225.6</av:PointCollection>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="Generate Data Sequence" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="jsonstring = Newtonsoft.Json.JsonConvert.SerializeObject(DataTable);&#xA;Console.WriteLine(jsonstring);" DisplayName="Convert DataTable to JSONString" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
-              <ui:InvokeCode.Arguments>
-                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="DataTable">[WOS_DataTable]</InOutArgument>
-                <OutArgument x:TypeArguments="x:String" x:Key="jsonstring">[WOS_String_Response]</OutArgument>
-              </ui:InvokeCode.Arguments>
-            </ui:InvokeCode>
-            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Show JSONObject" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[WOS_String_Response]" />
-          </Sequence>
-          <FlowStep.Next>
-            <FlowStep x:Name="__ReferenceID1">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <av:Point x:Key="ShapeLocation">380,225.6</av:Point>
-                  <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">380,260 331.2,260 331.2,160 270,160</av:PointCollection>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Send API Request" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_26">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" AcceptFormat="JSON" AuthenticationType="None" Body="[WOS_String_Response]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:8080/api/articles/wos-rpa" sap:VirtualizedContainerService.HintSize="333.6,59.2" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" Password="[Nothing]" TimeoutMS="6000" Username="[Nothing]">
-                  <ui:HttpClient.Attachments>
-                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                  </ui:HttpClient.Attachments>
-                  <ui:HttpClient.Cookies>
-                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                  </ui:HttpClient.Cookies>
-                  <ui:HttpClient.Headers>
-                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                  </ui:HttpClient.Headers>
-                  <ui:HttpClient.Parameters>
-                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                  </ui:HttpClient.Parameters>
-                  <ui:HttpClient.UrlSegments>
-                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                  </ui:HttpClient.UrlSegments>
-                </ui:HttpClient>
-              </Sequence>
-              <FlowStep.Next>
-                <FlowStep x:Name="__ReferenceID2">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:Point x:Key="ShapeLocation">70,125.6</av:Point>
-                      <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-                      <av:PointCollection x:Key="ConnectorLocation">170,194.4 170,225.6</av:PointCollection>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="IEEE Web Scrapping" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_45">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Default="https://ieeexplore.ieee.org/search/searchresult.jsp?searchWithin=%22Publication%20Number%22:6287639&amp;type=alt2" Name="IEEE_URL" />
-                      <Variable x:TypeArguments="sd:DataTable" Name="IEEE_Links_DataTable" />
-                    </Sequence.Variables>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <Assign DisplayName="Assign IEEE String" sap:VirtualizedContainerService.HintSize="541.6,60" sap2010:WorkflowViewState.IdRef="Assign_7">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[IEEE_URL]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">["https://ieeexplore.ieee.org/search/searchresult.jsp?searchWithin=%22Publication%20Number%22:6287639&amp;type=alt2&amp;queryText=" + keyword]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Open IEEE on Browser" sap:VirtualizedContainerService.HintSize="541.6,364.8" sap2010:WorkflowViewState.IdRef="OpenBrowser_7" Url="[IEEE_URL]">
-                      <ui:OpenBrowser.Body>
-                        <ActivityAction x:TypeArguments="x:Object">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,262.4" sap2010:WorkflowViewState.IdRef="Sequence_40">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" ContinueOnError="True" DataTable="[IEEE_Links_DataTable]" DisplayName="Extract IEEE Links" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='article_title' attr='text' name2='article_url' attr2='href'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='xpl-results-item' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='h2' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="ExtractData_12" MaxNumberOfResults="[max_results]" NextLinkSelector="&lt;webctrl aaname=' &amp;gt; ' parentid='xplMainContent' tag='A' /&gt;" SimulateClick="True">
-                              <ui:ExtractData.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8bae820c-572d-4a3d-8cb0-e72eeee8a9c3" InformativeScreenshot="0f763ceb8242ede80c97d1bd70e5fe8f" Selector="&lt;webctrl tag='XPL-RESULTS-LIST' /&gt;" WaitForReady="COMPLETE">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                </ui:Target>
-                              </ui:ExtractData.Target>
-                            </ui:ExtractData>
-                            <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="CloseTab_7" />
-                          </Sequence>
-                        </ActivityAction>
-                      </ui:OpenBrowser.Body>
-                    </ui:OpenBrowser>
-                    <ui:BuildDataTable DataTable="[IEEE_DataTable]" DisplayName="Initialize IEEE Empty DataTable" sap:VirtualizedContainerService.HintSize="541.6,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_3" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;article_title&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;article_date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;article_description&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;article_noc&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;article_nor&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;authors_list&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;journal_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;journal_if&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;journal_eigenfactor&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;keywords&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;categories&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;source&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[IEEE_Links_DataTable]" DisplayName="For Each URL in Links DataTable" sap:VirtualizedContainerService.HintSize="541.6,2005.6" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
-                      <ui:ForEachRow.Body>
-                        <ActivityAction x:TypeArguments="sd:DataRow">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Create Row Object" sap:VirtualizedContainerService.HintSize="508,1889.6" sap2010:WorkflowViewState.IdRef="Sequence_42">
-                            <Sequence.Variables>
-                              <Variable x:TypeArguments="x:String" Default="https://ieeexplore.ieee.org/document/6071903" Name="ArticleURL" />
-                              <Variable x:TypeArguments="x:String" Name="article_description">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="article_noc">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="article_nor">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="authors_list">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="journal_name">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="journal_if">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="journal_ci">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="keywords">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="categories">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="article_title">
-                                <Variable.Default>
-                                  <Literal x:TypeArguments="x:String" Value="" />
-                                </Variable.Default>
-                              </Variable>
-                              <Variable x:TypeArguments="x:String" Name="article_date" />
-                            </Sequence.Variables>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="article_url" DisplayName="Get Row Item" sap:VirtualizedContainerService.HintSize="466.4,188" sap2010:WorkflowViewState.IdRef="GetRowItem_4" Row="[CurrentRow]">
-                              <ui:GetRowItem.Value>
-                                <OutArgument x:TypeArguments="x:String">[ArticleURL]</OutArgument>
-                              </ui:GetRowItem.Value>
-                            </ui:GetRowItem>
-                            <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Open Article Details" sap:VirtualizedContainerService.HintSize="466.4,1340.8" sap2010:WorkflowViewState.IdRef="OpenBrowser_8" Url="[ArticleURL + &quot;keywords#keywords&quot;]">
-                              <ui:OpenBrowser.Body>
-                                <ActivityAction x:TypeArguments="x:Object">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                  </ActivityAction.Argument>
-                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416.8,1238.4" sap2010:WorkflowViewState.IdRef="Sequence_41">
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                    <ui:GetValue ContinueOnError="True" DisplayName="Get Article Title" sap:VirtualizedContainerService.HintSize="375.2,107.2" sap2010:WorkflowViewState.IdRef="GetValue_23">
-                                      <ui:GetValue.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b90207c6-0837-4957-96b5-c6a9f49e600a" InformativeScreenshot="df8bc2526bcd6537bf243f6c89ec1203" Selector="&lt;html app='msedge.exe' title='* | IEEE Xplore' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;xpl-root&amp;gt;div&amp;gt;xpl-document-details&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;xpl-document-header&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;h1&amp;gt;span' isleaf='1' parentid='LayoutWrapper' tag='SPAN' /&gt;" WaitForReady="COMPLETE">
-                                          <ui:Target.TimeoutMS>
-                                            <InArgument x:TypeArguments="x:Int32" />
-                                          </ui:Target.TimeoutMS>
-                                        </ui:Target>
-                                      </ui:GetValue.Target>
-                                      <ui:GetValue.Value>
-                                        <OutArgument x:TypeArguments="x:String">[article_title]</OutArgument>
-                                      </ui:GetValue.Value>
-                                    </ui:GetValue>
-                                    <ui:GetValue ContinueOnError="True" DisplayName="Get Article Date" sap:VirtualizedContainerService.HintSize="375.2,107.2" sap2010:WorkflowViewState.IdRef="GetValue_24">
-                                      <ui:GetValue.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="38f432c9-b16a-4ae8-bd3d-1ff2aba78050" InformativeScreenshot="5de147b905b2168c235042ea20851183" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;xpl-root&amp;gt;div&amp;gt;xpl-document-details&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;xpl-document-abstract&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='4' parentid='LayoutWrapper' tag='DIV' /&gt;">
-                                          <ui:Target.TimeoutMS>
-                                            <InArgument x:TypeArguments="x:Int32" />
-                                          </ui:Target.TimeoutMS>
-                                          <ui:Target.WaitForReady>
-                                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                                          </ui:Target.WaitForReady>
-                                        </ui:Target>
-                                      </ui:GetValue.Target>
-                                      <ui:GetValue.Value>
-                                        <OutArgument x:TypeArguments="x:String">[article_date]</OutArgument>
-                                      </ui:GetValue.Value>
-                                    </ui:GetValue>
-                                    <ui:GetValue ContinueOnError="True" DisplayName="Get Article Description" sap:VirtualizedContainerService.HintSize="375.2,107.2" sap2010:WorkflowViewState.IdRef="GetValue_25">
-                                      <ui:GetValue.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2701a2cd-7e28-4abe-ba62-5d4d5110be19" InformativeScreenshot="1df42fca6651ed56bdea4fc2fabf8899" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;xpl-root&amp;gt;div&amp;gt;xpl-document-details&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;xpl-document-abstract&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' isleaf='1' parentid='LayoutWrapper' tag='DIV' /&gt;">
-                                          <ui:Target.TimeoutMS>
-                                            <InArgument x:TypeArguments="x:Int32" />
-                                          </ui:Target.TimeoutMS>
-                                          <ui:Target.WaitForReady>
-                                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                                          </ui:Target.WaitForReady>
-                                        </ui:Target>
-                                      </ui:GetValue.Target>
-                                      <ui:GetValue.Value>
-                                        <OutArgument x:TypeArguments="x:String">[article_description]</OutArgument>
-                                      </ui:GetValue.Value>
-                                    </ui:GetValue>
-                                    <ui:GetValue ContinueOnError="True" DisplayName="Get Article Number of Citations" sap:VirtualizedContainerService.HintSize="375.2,107.2" sap2010:WorkflowViewState.IdRef="GetValue_26">
-                                      <ui:GetValue.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="67ea0fd2-940f-4415-8dbd-647291417ccc" InformativeScreenshot="6f7ff2dd6dea4baee8f27f94597f35c7" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;xpl-root&amp;gt;div&amp;gt;xpl-document-details&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;xpl-document-header&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;h1&amp;gt;span' isleaf='1' parentid='LayoutWrapper' tag='SPAN' /&gt;&lt;nav up='5' /&gt;&lt;webctrl parentid='LayoutWrapper' tag='DIV' idx='29' /&gt;" TimeoutMS="0" WaitForReady="INTERACTIVE" />
-                                      </ui:GetValue.Target>
-                                      <ui:GetValue.Value>
-                                        <OutArgument x:TypeArguments="x:String">[article_noc]</OutArgument>
-                                      </ui:GetValue.Value>
-                                    </ui:GetValue>
-                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_48">
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <ui:GetValue ContinueOnError="True" DisplayName="Get Article Number of References" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_34">
-                                        <ui:GetValue.Target>
-                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="70e1854c-e081-45c8-8e2c-e9c4a36fe45c" InformativeScreenshot="9efca208c426a3d9c79b5a30cc0d1b49" Selector="&lt;webctrl id='FullRRPTa-wos-citation-network-refCountLink' tag='A' /&gt;" TimeoutMS="0" WaitForReady="INTERACTIVE" />
-                                        </ui:GetValue.Target>
-                                        <ui:GetValue.Value>
-                                          <OutArgument x:TypeArguments="x:String">[article_nor]</OutArgument>
-                                        </ui:GetValue.Value>
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                      </ui:GetValue>
-                                    </Sequence>
-                                    <ui:GetValue ContinueOnError="True" DisplayName="Get List of Authors" sap:VirtualizedContainerService.HintSize="375.2,107.2" sap2010:WorkflowViewState.IdRef="GetValue_28">
-                                      <ui:GetValue.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3b9ebca5-ac5b-41ce-a01f-8d4a626d808f" InformativeScreenshot="b2f63505a40b81e455a59f76779620a3" Selector="&lt;html app='msedge.exe' title='* | IEEE Journals &amp;amp; Magazine | IEEE Xplore' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;xpl-root&amp;gt;div&amp;gt;xpl-document-details&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;xpl-document-header&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;xpl-author-banner&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='LayoutWrapper' tag='DIV' /&gt;">
-                                          <ui:Target.TimeoutMS>
-                                            <InArgument x:TypeArguments="x:Int32" />
-                                          </ui:Target.TimeoutMS>
-                                          <ui:Target.WaitForReady>
-                                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                                          </ui:Target.WaitForReady>
-                                        </ui:Target>
-                                      </ui:GetValue.Target>
-                                      <ui:GetValue.Value>
-                                        <OutArgument x:TypeArguments="x:String">[authors_list]</OutArgument>
-                                      </ui:GetValue.Value>
-                                    </ui:GetValue>
-                                    <ui:GetValue ContinueOnError="True" DisplayName="Get Keywords" sap:VirtualizedContainerService.HintSize="375.2,107.2" sap2010:WorkflowViewState.IdRef="GetValue_32">
-                                      <ui:GetValue.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e85da729-606d-42dc-ac4f-f67b10605515" InformativeScreenshot="6c9b072630f5109ff52aae77ac2d72b8" Selector="&lt;webctrl aria-role='tab' id='keywords-header' tag='DIV' /&gt;&lt;nav up='1' /&gt;&lt;webctrl parentid='keywords' tag='LI' idx='1' /&gt;" WaitForReady="INTERACTIVE">
-                                          <ui:Target.TimeoutMS>
-                                            <InArgument x:TypeArguments="x:Int32" />
-                                          </ui:Target.TimeoutMS>
-                                        </ui:Target>
-                                      </ui:GetValue.Target>
-                                      <ui:GetValue.Value>
-                                        <OutArgument x:TypeArguments="x:String">[keywords]</OutArgument>
-                                      </ui:GetValue.Value>
-                                    </ui:GetValue>
-                                    <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="375.2,22.4" sap2010:WorkflowViewState.IdRef="CloseTab_8" />
-                                  </Sequence>
-                                </ActivityAction>
-                              </ui:OpenBrowser.Body>
-                            </ui:OpenBrowser>
-                            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{article_title, article_date, article_description, article_noc, &quot;&quot;, authors_list, &quot;IEEE Access&quot;, &quot;3.476&quot;, &quot;0.24936&quot;, keywords, keywords, &quot;IEEE Explore&quot;}]" DataTable="[IEEE_DataTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="466.4,188" sap2010:WorkflowViewState.IdRef="AddDataRow_3" />
-                          </Sequence>
-                        </ActivityAction>
-                      </ui:ForEachRow.Body>
-                    </ui:ForEachRow>
-                    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="541.6,290.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" InstanceCachePeriod="3000" WorkbookPath="C:\Users\Rodrigo\Desktop\Coding\UIPath\PRY20220169\data_files\test1.xlsx">
-                      <ui:ExcelApplicationScope.Body>
-                        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,180.8" sap2010:WorkflowViewState.IdRef="Sequence_49">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:ExcelWriteRange AddHeaders="True" DataTable="[IEEE_DataTable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_6" SheetName="IEEE" StartingCell="A1" />
-                          </Sequence>
-                        </ActivityAction>
-                      </ui:ExcelApplicationScope.Body>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:ExcelApplicationScope>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="541.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[IEEE_DataTable.RowCount.ToString]" />
-                  </Sequence>
-                  <FlowStep.Next>
-                    <FlowStep x:Name="__ReferenceID3">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <av:Point x:Key="ShapeLocation">70,225.6</av:Point>
-                          <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-                          <av:PointCollection x:Key="ConnectorLocation">170,294.4 170,325.6</av:PointCollection>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="Generate Data Sequence" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_50">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="jsonstring = Newtonsoft.Json.JsonConvert.SerializeObject(DataTable);&#xA;Console.WriteLine(jsonstring);" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
-                          <ui:InvokeCode.Arguments>
-                            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="DataTable">[IEEE_DataTable]</InOutArgument>
-                            <OutArgument x:TypeArguments="x:String" x:Key="jsonstring">[IEEE_String_Response]</OutArgument>
-                          </ui:InvokeCode.Arguments>
-                        </ui:InvokeCode>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Show JSONObject" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_12" Text="[IEEE_String_Response]" />
-                      </Sequence>
-                      <FlowStep.Next>
-                        <FlowStep x:Name="__ReferenceID4">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <av:Point x:Key="ShapeLocation">70,325.6</av:Point>
-                              <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="Send API Request" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_55">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" AcceptFormat="JSON" AuthenticationType="None" Body="[IEEE_String_Response]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:8080/api/articles/ieee-rpa" sap:VirtualizedContainerService.HintSize="333.6,59.2" sap2010:WorkflowViewState.IdRef="HttpClient_7" Method="POST" Password="[Nothing]" TimeoutMS="6000" Username="[Nothing]">
-                              <ui:HttpClient.Attachments>
-                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                              </ui:HttpClient.Attachments>
-                              <ui:HttpClient.Cookies>
-                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                              </ui:HttpClient.Cookies>
-                              <ui:HttpClient.Headers>
-                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                              </ui:HttpClient.Headers>
-                              <ui:HttpClient.Parameters>
-                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                              </ui:HttpClient.Parameters>
-                              <ui:HttpClient.UrlSegments>
-                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                              </ui:HttpClient.UrlSegments>
-                            </ui:HttpClient>
-                          </Sequence>
-                        </FlowStep>
-                      </FlowStep.Next>
-                    </FlowStep>
-                  </FlowStep.Next>
-                </FlowStep>
-              </FlowStep.Next>
-            </FlowStep>
-          </FlowStep.Next>
-        </FlowStep>
-      </FlowStep.Next>
-    </FlowStep>
-    <x:Reference>__ReferenceID0</x:Reference>
-    <FlowStep x:Name="__ReferenceID8">
+    <FlowStep x:Name="__ReferenceID2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">100,16.04</av:Point>
           <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">300,50.44 317.2,50.44 317.2,360 380,360</av:PointCollection>
+          <av:PointCollection x:Key="ConnectorLocation">300,50.44 320,50.44 320,155.6</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Sequence DisplayName="Assign Variables and Keywords" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
@@ -829,12 +147,12 @@
         </ui:InputDialog>
       </Sequence>
       <FlowStep.Next>
-        <FlowStep x:Name="__ReferenceID5">
+        <FlowStep x:Name="__ReferenceID0">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:Point x:Key="ShapeLocation">380,325.6</av:Point>
+              <av:Point x:Key="ShapeLocation">220,155.6</av:Point>
               <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">480,394.4 480,425.6</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">320,224.4 320,255.6</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <Sequence DisplayName="Get ScienceDirect Data" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_64">
@@ -880,15 +198,14 @@
             </ui:HttpClient>
           </Sequence>
           <FlowStep.Next>
-            <FlowStep x:Name="__ReferenceID6">
+            <FlowStep x:Name="__ReferenceID1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <av:Point x:Key="ShapeLocation">380,425.6</av:Point>
+                  <av:Point x:Key="ShapeLocation">220,255.6</av:Point>
                   <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">380,460 270,460</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Format JSON Data" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_65">
+              <Sequence DisplayName="Format JSON Data" sap:VirtualizedContainerService.HintSize="475.2,1074.4" sap2010:WorkflowViewState.IdRef="Sequence_65">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Default="https://api.elsevier.com/content/search/index:SCOPUS?query=title(bibliometrics)&amp;start=0&amp;count=10&amp;apikey=dcb7e9db2ce9fe208f9b2b3eb4f931bc&amp;httpAccept=application/json&amp;date=2018-2022&amp;sort=citedby-count" Name="SD_URL" />
                 </Sequence.Variables>
@@ -898,9 +215,9 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[SD_String_Response]" />
-                <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[SD_JSON_Response]" JsonString="[SD_String_Response]" />
-                <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[SD_String_Response]" />
+                <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[SD_JSON_Response]" JsonString="[SD_String_Response]" />
+                <Assign sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="Assign_12">
                   <Assign.To>
                     <OutArgument x:TypeArguments="njl:JObject">[SD_JSON_Response]</OutArgument>
                   </Assign.To>
@@ -908,7 +225,7 @@
                     <InArgument x:TypeArguments="njl:JObject">[SD_JSON_Response.SelectToken("search-results").ToObject(Of JObject)]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                <Assign sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="Assign_13">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[SD_String_Response]</OutArgument>
                   </Assign.To>
@@ -916,56 +233,32 @@
                     <InArgument x:TypeArguments="x:String">[SD_JSON_Response.SelectToken("entry").ToString()]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[SD_String_Response]" />
-                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_10" Text="[SD_String_Response]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[SD_String_Response]" />
+                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="433.6,290.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_8" InstanceCachePeriod="3000" WorkbookPath="[&quot;C:\Users\&quot;+Environment.UserName+ &quot;\Downloads\test-scopus”]">
+                  <ui:ExcelApplicationScope.Body>
+                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,180.8" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ExcelWriteCell Cell="A1" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="test-scopus" Text="[SD_String_Response]" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ExcelApplicationScope.Body>
+                </ui:ExcelApplicationScope>
+                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="433.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_10" Text="[SD_String_Response]" />
               </Sequence>
-              <FlowStep.Next>
-                <FlowStep x:Name="__ReferenceID7">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:Point x:Key="ShapeLocation">70,425.6</av:Point>
-                      <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-                      <av:PointCollection x:Key="ConnectorLocation">390,310 360,310 360,170 280,170</av:PointCollection>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="Send API Request" sap:VirtualizedContainerService.HintSize="375.2,277.6" sap2010:WorkflowViewState.IdRef="Sequence_66">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_13" Text="[SD_String_Response]" />
-                    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" AcceptFormat="JSON" AuthenticationType="None" Body="[SD_String_Response]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="http://localhost:8080/api/articles/scopus-rpa" sap:VirtualizedContainerService.HintSize="333.6,59.2" sap2010:WorkflowViewState.IdRef="HttpClient_6" Method="POST" Password="[Nothing]" TimeoutMS="6000" Username="[Nothing]">
-                      <ui:HttpClient.Attachments>
-                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                      </ui:HttpClient.Attachments>
-                      <ui:HttpClient.Cookies>
-                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                      </ui:HttpClient.Cookies>
-                      <ui:HttpClient.Headers>
-                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                      </ui:HttpClient.Headers>
-                      <ui:HttpClient.Parameters>
-                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                      </ui:HttpClient.Parameters>
-                      <ui:HttpClient.UrlSegments>
-                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                      </ui:HttpClient.UrlSegments>
-                    </ui:HttpClient>
-                  </Sequence>
-                </FlowStep>
-              </FlowStep.Next>
             </FlowStep>
           </FlowStep.Next>
         </FlowStep>
       </FlowStep.Next>
     </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
-    <x:Reference>__ReferenceID2</x:Reference>
-    <x:Reference>__ReferenceID3</x:Reference>
-    <x:Reference>__ReferenceID4</x:Reference>
-    <x:Reference>__ReferenceID5</x:Reference>
-    <x:Reference>__ReferenceID6</x:Reference>
-    <x:Reference>__ReferenceID7</x:Reference>
   </Flowchart>
 </Activity>
